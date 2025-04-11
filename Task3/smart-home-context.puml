@@ -1,0 +1,19 @@
+@startuml
+!include https://raw.githubusercontent.com/plantuml-stdlib/C4-PlantUML/master/C4_Container.puml
+ LAYOUT_WITH_LEGEND()
+ title Контекстная диаграмма PropDevelopment SmartHome
+
+ Person(User, "Собственник, Жилец", "Пользователь мобильного приложения")
+
+ System_Boundary(internalItEcoSystem, "PropDevelopment IT Ecosystem") {
+   System(MobileApplication, "Mobile приложение", "Включает функционал SmartHome")
+   System(BackendApplication, "Backend приложение SmartHome", "Функционал реализации SmartHome + запросы к внешним партнерам")
+ }
+
+ System_Ext(ExternalSystem, "Внешний партнер функционала SmartHome", "Внешняя система реализующая функционал умного дома. API управления домофон, шлагбаум и тд.")
+
+ Rel(User, MobileApplication, "Пользовательское взаимодействие с приложением с услугами SmartHome", "")
+ Rel(MobileApplication, BackendApplication, "Взаимодействие Mobile и Backend приложений", "")
+ Rel(BackendApplication, ExternalSystem, "API внешнего партнера с реализацией управлением устройств умного дома", "API")
+
+@enduml
